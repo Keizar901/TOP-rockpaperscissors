@@ -1,8 +1,7 @@
 <script>
 
 
-let comp = computerPlay();
-console.log(comp);
+game();
 
 
 function computerPlay(){
@@ -15,6 +14,82 @@ function computerPlay(){
         case 2:
             return 's';
     }
+
+}
+
+function playRound(playerSelection, computerSelection){
+
+    switch(playerSelection){
+        case 'rock': 
+            if(computerSelection == 's'){
+                return 1;
+            }else if(computerSelection == 'p'){
+                return 0;
+            }else{
+                return 2;
+            }
+        
+        case 'paper': 
+            if(computerSelection == 'r'){
+                return 1;
+            }else if(computerSelection == 's'){
+                return 0;
+            }else{
+                return 2;
+            }
+        
+        case 'scissors': 
+            if(computerSelection == 'p'){
+                return 1;
+            }else if(computerSelection == 'r'){
+                return 0;
+            }else{
+                return 2;
+            }
+    }
+
+
+
+}
+
+function game(){
+    let playerwins = 0;
+    let compwins = 0;
+    let i;
+
+    for(i = 0; i < 5; i++){
+        let playermove = prompt("Please input your move");
+        let compmove = computerPlay();
+        console.log(compmove);
+
+        let result = playRound(playermove.toLowerCase(), compmove);
+
+        switch(result){
+            case 0:
+                playerwins++;
+                console.log("You Win!");
+                break;
+            case 1:
+                compwins++;
+                console.log("You Lose!");
+                break;
+            case 2:
+                console.log("Draw");
+        }
+
+
+    }
+
+    if(playerwins > compwins){
+        console.log("Player wins with " + playerwins + " wins");
+    }else if (compwins > playerwins){
+        console.log("Computer wins with " + compwins + " wins");
+    }else{
+        console.log("Draw");
+    }
+    
+
+
 
 }
 
